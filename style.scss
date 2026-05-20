@@ -1,0 +1,267 @@
+
+@import 'variables';
+
+// ==========================================
+// BAZNI STILOVI
+// ==========================================
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-main;
+    color: $text-dark;
+    line-height: 1.6;
+}
+
+// ==========================================
+// UGNEŽDAVANJE (Nesting) I ORGANIZACIJA
+// ==========================================
+
+
+.navbar {
+    background-color: $secondary-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    .logo {
+        color: $white;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    nav ul {
+        display: flex;
+        list-style: none;
+
+        li {
+            margin-left: 20px;
+
+            a {
+                color: $white;
+                text-decoration: none;
+                transition: color 0.3s;
+
+                &:hover {
+                    color: potamni-boju($primary-color, 10%);
+                }
+            }
+        }
+    }
+
+    @include mobile {
+        flex-direction: column;
+        nav ul {
+            margin-top: 10px;
+            flex-direction: column;
+            align-items: center;
+            li { margin: 5px 0; }
+        }
+    }
+}
+
+.hero {
+    height: 60vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/1200/600') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: $white;
+
+    .hero-content {
+        h1 { font-size: 3rem; }
+        p { font-size: 1.2rem; margin-bottom: 20px; }
+    }
+}
+
+.section {
+    padding: $padding-space 10%;
+    text-align: center;
+
+    h2 {
+        margin-bottom: 20px;
+        position: relative;
+        display: inline-block;
+        
+        &::after {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 3px;
+            background: $primary-color;
+            margin: 10px auto 0;
+        }
+    }
+
+    &.bg-light {
+        background-color: $light-bg;
+    }
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: $primary-color;
+    color: $white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:hover {
+        background-color: potamni-boju($primary-color, 15%);
+        transform: scale(1.2) ;
+    }
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+
+    .project-card {
+        background: $white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        border-top: 4px solid $primary-color;
+        transition: transform 0.3s ease;
+    
+    &:hover{
+        transform: translateY(-5px);
+    }
+}
+
+    @include tablet {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include mobile {
+        grid-template-columns: 1fr;
+    }
+}
+
+.contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+}
+
+footer {
+    background: $secondary-color;
+    color: $white;
+    text-align: center;
+    padding: 20px;
+}
+
+// ==========================================
+// 4. SASS PETLJA (@each) ZA VEŠTINE
+// ==========================================
+// ==========================================
+// 4. MODERNE KARTICE SA IKONICAMA I PROGRES BAROVIMA (AŽURIRANO)
+// ==========================================
+
+// Grid raspored za velike kartice - sada koristi repeat(auto-fit) za bolji raspored 8 kartica
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); // 4 kolone na desktopu (2 reda po 4 kartice)
+    gap: 25px;
+    max-width: 1200px;
+    margin: 30px auto 0;
+
+    @include tablet {
+        grid-template-columns: repeat(2, 1fr); // Na tabletu 2 kolone (4 reda po 2 kartice)
+    }
+    @include mobile {
+        grid-template-columns: 1fr; // Na mobilnom 1 kolona
+    }
+}
+
+// Izgled pojedinačne kartice
+.skill-card {
+    background: $white;
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    h3 {
+        margin: 15px 0 10px;
+        font-size: 1.1rem;
+        color: $secondary-color;
+    }
+}
+
+// Velike ikonice i njihove brend boje za svih 8 tehnologija
+.skill-icon {
+    font-size: 3.5rem;
+    display: block;
+    margin: 0 auto;
+    
+    &.html-color { color: #e34c26; }        // HTML narandžasta
+    &.css-color { color: #264de4; }         // CSS plava
+    &.mysql-color { color: #00758f; }       // MySQL plava
+    &.csharp-color { color: #178600; }      // C# zelena
+    &.js-color { color: #f7df1e; }          // JavaScript žuta
+    &.photoshop-color { color: #31a8ff; }   // Photoshop svetlo plava
+    &.vs-color { color: #5c2d91; }          // Visual Studio ljubičasta
+    &.prompt-color { color: #00a884; }      // Prompt Engineering AI zelena
+}
+
+// Siva pozadina progres bara
+.progress-bar {
+    background: #e9ecef;
+    height: 12px;
+    border-radius: 6px;
+    overflow: visible;
+    margin-top: 15px;
+    position: relative;
+}
+
+// SASS Petlja koja automatski pravi punjenje za svih 8 veština odjednom
+@each $name, $value in $skills-list {
+    .skill-#{$name} {
+        height: 100%;
+        width: $value; 
+        background-color: $primary-color; 
+        border-radius: 6px;
+        position: relative;
+        transition: width 1s ease-in-out;
+
+        // Oznaka sa procentom iznad bara
+        span {
+            position: absolute;
+            right: -15px;
+            top: -22px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            background: $secondary-color;
+            color: $white;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+    }
+}

@@ -1,0 +1,45 @@
+// ==========================================
+// 1. VARIJABLE (Boje, fontovi, prelazi)
+// ==========================================
+$primary-color: #050816;
+$secondary-color: #d6340b;
+$light-bg: #6f7379;
+$white: #ffffff;
+$text-dark: #333333;
+$font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$padding-space: 40px;
+
+// Osvežena lista veština sa tvojim novim tehnologijama i procentima
+// Proširena lista svih 8 veština sa procentima
+$skills-list: (
+    html: 90%,
+    css: 85%,
+    mysql: 75%,
+    csharp: 80%,
+    javascript: 85%,
+    photoshop: 70%,
+    visualstudio: 90%,
+    prompt: 95%
+);
+
+// ==========================================
+// 2. SASS FUNKCIJA (Matematički proračun i manipulacija bojom)
+// ==========================================
+@function potamni-boju($boja, $procenat) {
+    @if $procenat > 20% {
+        @return darken($boja, 20%); 
+    } @else {
+        @return darken($boja, $procenat);
+    }
+}
+
+// ==========================================
+// 3. MIKSINI ZA RESPONSIVE DIZAJN (Medija upiti)
+// ==========================================
+@mixin mobile {
+    @media (max-width: 600px) { @content; }
+}
+
+@mixin tablet {
+    @media (max-width: 900px) { @content; }
+}
